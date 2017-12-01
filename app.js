@@ -14,13 +14,21 @@ const option = {
     port: 443,
     path: '/users/yofri',
     method: 'GET',
-    headers: {
+    headers: { 
         'user-agent': 'nodejs'
     }
 }
 
-let request = https.request(option, (result) => {
-    console.Slog('Got Responese: ', result.statusCode);
+let request = https.request(option, (response) => {
+    let body = ''
+    response.on('data', (data) => {
+       body = body + data;
+    })
+
+    response.on('end',  () => {
+        console.log(body)
+        console.log(typeof  body)
+    })
 })
 
 request.end();
