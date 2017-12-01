@@ -26,8 +26,9 @@ let request = https.request(option, (response) => {
     })
 
     response.on('end',  () => {
-        console.log(body)
-        console.log(typeof  body)
+       let profile = JSON.parse(body)
+    //    console.log(profile)
+       console.log(profile.avatar_url)
     })
 })
 
